@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Bowl Animation - Amit Kumar Singh</title>
+    <link rel="stylesheet" type="text/css" href="liquid-style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Amit Kumar Singh</h1>
+        <p>Creative CSS Animation Project</p>
+        <a href="index.html" class="back-btn">← Back to Portfolio</a>
+    </div>
+
+    <section>
+        <div class="shadow"></div>
+        <div class="bowl">
+            <div class="liquid"></div>
+        </div>
+    </section>
+
+    <div class="info">
+        <h2>3D Liquid Bowl Effect</h2>
+        <p>Pure CSS Animation<br>
+        No JavaScript Required<br>
+        Click anywhere to interact</p>
+    </div>
+
+    <script>
+        // Add interactive effects
+        document.addEventListener('click', function() {
+            const bowl = document.querySelector('.bowl');
+            bowl.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        });
+
+        // Color changing effect
+        const colors = ['#1ae907', '#07e9ae', '#0791e9', '#9107e9', '#e90759', '#e97507'];
+        let colorIndex = 0;
+
+        setInterval(() => {
+            const liquid = document.querySelector('.liquid');
+            const liquidBefore = document.querySelector('.liquid::before');
+            colorIndex = (colorIndex + 1) % colors.length;
+
+            liquid.style.background = colors[colorIndex];
+            liquid.style.filter = `drop-shadow(0 0 80px ${colors[colorIndex]})`;
+
+            // Update CSS custom property for ::before
+            document.documentElement.style.setProperty('--liquid-color', colors[colorIndex]);
+        }, 4000);
+    </script>
+</body>
+</html>
